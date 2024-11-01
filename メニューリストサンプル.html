@@ -7,10 +7,13 @@
 ul.ddmenu {
    margin: 0; padding: 0 0 0 15px;
    background-color: #cc0000;
+   display: flex; /* メニューを横並びに */
+   flex-wrap: wrap; /* 画面が小さいときに折り返し可能に */
 }
 ul.ddmenu li {
-   width: 125px; display: inline-block;
-   list-style-type: none; position: relative;
+   width: 20%; /* メニュー項目の横幅を割合で指定 */
+   list-style-type: none;
+   position: relative;
 }
 ul.ddmenu a {
    background-color: #cc0000; color: white;
@@ -21,12 +24,29 @@ ul.ddmenu a {
 ul.ddmenu ul {
    display: none; margin: 0; padding: 0;
    position: absolute;
+   top: 100%; /* メインメニューのすぐ下に配置 */
+   left: 0;
+   width: 100%; /* 親項目と同じ幅 */
+   background-color: #cc0000; /* サブメニューの背景色 */
+}
+ul.ddmenu ul li {
+   width: 100%; /* 各サブメニュー項目が親と同じ幅を取る */
 }
 ul.ddmenu a:hover {
    background-color: #ffdddd; color: #dd0000;
 }
 ul.ddmenu li:hover ul {
    display: block;
+}
+
+/* 小画面用にメインメニューだけ縦並びに変更 */
+@media (max-width: 768px) {
+   ul.ddmenu {
+      flex-direction: column;
+   }
+   ul.ddmenu li {
+      width: 100%;
+   }
 }
 </style>
 </head>
